@@ -1,0 +1,35 @@
+{
+    "name": "sahapranta/laravel-roadmap",
+    "description": "A simple package for integrating roadmap for your laravel application.",
+    "type": "library",
+    "license": "MIT",
+    "version": "1.0.0",
+    "autoload": {
+        "psr-4": {
+            "Sahapranta\\LaravelRoadmap\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Sahapranta\\LaravelRoadmap\\Tests\\": "tests"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Sahapranta\\LaravelRoadmap\\LaravelRoadmapServiceProvider"
+            ]
+        }
+    },
+    "authors": [
+        {
+            "name": "Pranta Saha",
+            "email": "pranta1204@gmail.com",
+            "homepage": "https://github.com/sahapranta/laravel-roadmap"
+        }
+    ],
+    "require-dev": {
+        "orchestra/testbench": "^8.21",
+        "phpunit/phpunit": "^10.5"
+    }
+}
