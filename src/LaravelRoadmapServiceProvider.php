@@ -19,10 +19,13 @@ class LaravelRoadmapServiceProvider extends ServiceProvider
             $this->publishes([
                 __DIR__ . '/../config/config.php' => config_path('roadmap.php'),
             ], 'config');
+
+            $this->publishes($this->listMigrations(), 'migrations');
         }
 
         $this->registerRoutes();
-        $this->loadViewsFrom(__DIR__.'/../resources/views', 'roadmap');
+        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'roadmap');
+        $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
     }
 
     protected function registerRoutes()
@@ -38,5 +41,18 @@ class LaravelRoadmapServiceProvider extends ServiceProvider
             'prefix' => config('roadmap.prefix'),
             'middleware' => config('roadmap.middleware'),
         ];
+    }
+
+    protected function listMigrations(): array
+    {
+        $files = $this->app->make('files')->allFiles(__DIR__ . '/../database/migrations');
+
+        $filesArray = [];
+
+        foreach ($files as $file) {
+            $filesArray[$file->getPath()] = database_path("migrations/{$file->getFilename()}");
+        }
+
+        return $filesArray;
     }
 }
